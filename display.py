@@ -4,30 +4,30 @@ import random
 # Inicialização
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1300, 750))
 pygame.display.set_caption("Jogo Exemplo - Pygame")
 clock = pygame.time.Clock()
 
 # Sons
-pygame.mixer.music.load("musica.mp3")  # coloque sua música
+pygame.mixer.music.load("musica.mp3")  
 pygame.mixer.music.play(-1)  # toca em loop
 som_ponto = pygame.mixer.Sound("pulo.mp3")  # som de ponto
 
 # Cores
-BRANCO = (255, 255, 255)
+azul = (176,224,230)
 
 # Imagens
-imagem_jogador = pygame.image.load("celeste.png").convert_alpha()
-imagem_jogador = pygame.transform.scale(imagem_jogador, (100, 100))
+celeste = pygame.image.load("celeste.png").convert_alpha()
+celeste = pygame.transform.scale(celeste, (120, 120))
 
-imagem_estrela = pygame.image.load("peixe.png").convert_alpha()
-imagem_estrela = pygame.transform.scale(imagem_estrela, (70, 70))
+peixe = pygame.image.load("peixe.png").convert_alpha()
+peixe = pygame.transform.scale(peixe, (80, 80))
 
 # Sprite do jogador
 class Jogador(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = imagem_jogador
+        self.image = celeste
         self.rect = self.image.get_rect()
         self.rect.center = (400, 300)
         self.velocidade = 5
@@ -47,7 +47,7 @@ class Jogador(pygame.sprite.Sprite):
 class Estrela(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = imagem_estrela
+        self.image = peixe
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, 770)
         self.rect.y = random.randint(0, 570)
@@ -90,7 +90,7 @@ while rodando:
         all_sprites.add(nova)
 
     # Desenho
-    screen.fill(BRANCO)
+    screen.fill(azul)
     all_sprites.draw(screen)
     texto = fonte.render(f"Pontos: {pontos}", True, (0, 0, 0))
     screen.blit(texto, (10, 10))
